@@ -1,0 +1,5 @@
+C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\DataAccesTier\bin\Debug\DataAccesTier.dll
+C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\DataAccesTier\bin\Debug\DataAccesTier.pdb
+C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\DataAccesTier\obj\Debug\DataAccesTier.csprojResolveAssemblyReference.cache
+C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\DataAccesTier\obj\Debug\DataAccesTier.dll
+C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\DataAccesTier\obj\Debug\DataAccesTier.pdb

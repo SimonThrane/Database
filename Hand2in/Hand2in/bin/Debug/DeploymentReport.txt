@@ -1,0 +1,58 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Adresse]
+       [dbo].[Person]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [dbo].[Person].[AdresseID] on table [dbo].[Person] must be added, but the column has no default value and
+         does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must
+         either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults
+         as a deployment option.
+       The column [dbo].[Person].[Type] on table [dbo].[Person] must be added, but the column has no default value and does not
+         allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add
+         a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a
+         deployment option.
+       The table [dbo].[Telefon] is being dropped and re-created since all non-computed columns within the table have been
+         redefined.
+
+** User actions
+     Drop
+       [dbo].[fk_ArbejdsAdresse] (Foreign Key)
+       [dbo].[fk_PrivatAdresse] (Foreign Key)
+       [dbo].[fk_Sommerhus] (Foreign Key)
+       [dbo].[fk_Familie] (Foreign Key)
+       [dbo].[fk_Kollega] (Foreign Key)
+       [dbo].[fk_Telefon] (Foreign Key)
+       [dbo].[fk_Ven] (Foreign Key)
+       [dbo].[fk_ArbejdsTelefon] (Foreign Key)
+       [dbo].[fk_MobilTelefon] (Foreign Key)
+       [dbo].[fk_PrivatTelefon] (Foreign Key)
+       [dbo].[Telefon] (Table)
+     Table rebuild
+       [dbo].[Adresse] (Table)
+       [dbo].[Person] (Table)
+     Alter
+       [dbo].[erPaa] (Table)
+     Create
+       [dbo].[Telefon] (Table)
+       [dbo].[har] (Table)
+       [dbo].[fk_Person] (Foreign Key)
+       [dbo].[fk_har] (Foreign Key)
+       [dbo].[fk_har2] (Foreign Key)
+
+** Supporting actions
+     Drop
+       [dbo].[fk_erPaa] (Foreign Key)
+       [dbo].[fk_erPaa2] (Foreign Key)
+     Create
+       [dbo].[fk_erPaa] (Foreign Key)
+       [dbo].[fk_erPaa2] (Foreign Key)
+
+The column [dbo].[Person].[AdresseID] on table [dbo].[Person] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The column [dbo].[Person].[Type] on table [dbo].[Person] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The table [dbo].[Telefon] is being dropped and re-created since all non-computed columns within the table have been redefined.
+The project and target databases have different collation settings. Deployment errors might occur.
+

@@ -1,0 +1,6 @@
+C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\TestApplication\bin\Debug\TestApplication.exe.config
+C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\TestApplication\bin\Debug\TestApplication.exe
+C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\TestApplication\bin\Debug\TestApplication.pdb
+C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\TestApplication\obj\Debug\TestApplication.csprojResolveAssemblyReference.cache
+C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\TestApplication\obj\Debug\TestApplication.exe
+C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\TestApplication\obj\Debug\TestApplication.pdb
