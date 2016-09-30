@@ -3,3 +3,6 @@ C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\DataAccesTier\bi
 C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\DataAccesTier\obj\Debug\DataAccesTier.csprojResolveAssemblyReference.cache
 C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\DataAccesTier\obj\Debug\DataAccesTier.dll
 C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\DataAccesTier\obj\Debug\DataAccesTier.pdb
+C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\DataAccesTier\obj\Debug\DataAccesTier.csprojResolveAssemblyReference.cache
+C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\DataAccesTier\obj\Debug\DataAccesTier.dll
+C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\DataAccesTier\obj\Debug\DataAccesTier.pdb
