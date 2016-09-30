@@ -43,6 +43,12 @@
     <Compile Include="PersonUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AdresseKartotek\AdresseKartotek.csproj">
+      <Project>{65D1B9E3-A1E4-4851-ABAE-2DBD3BCD359D}</Project>
+      <Name>AdresseKartotek</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
