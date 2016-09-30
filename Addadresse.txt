@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataAccesTier
+{
+    class AdresseAdd
+    {
+
+
+        public void InsertAdresse(ref Adresse adresse, ref Person person)
+        {
+            string commandstring = @"INSERT INTO [Adresse] (Bynavn,Husnummer,Postnummer,Type,Vejnavn)
+                                    OUTPUT INSERTED.AdresseId
+                                    VALUES (@Bynavn,@Husnummer,@Postnummer,@Type,@Vejnavn)";
+
+
+            using (SqlCommand cmd = new SqlCommand(commandstring, OpenConnection))
+            {
+                cmd.Parameters.AddWithValue("@Bynavn", adresse.Bynavn);
+                cmd.Parameters.AddWithValue("@Husnummer", adresse.Husnummer);
+                cmd.Parameters.AddWithValue("@Postnummer", adresse.Postummer);
+                cmd.Parameters.AddWithValue("@Type", adresse.Type);
+                cmd.Parameters.AddWithValue("@Vejnavn", adresse.Vejnavn);
+            }
+        }
+    }
+}
