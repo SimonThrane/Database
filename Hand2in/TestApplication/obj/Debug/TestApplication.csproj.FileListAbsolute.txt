@@ -4,3 +4,11 @@ C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\TestApplication\
 C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\TestApplication\obj\Debug\TestApplication.csprojResolveAssemblyReference.cache
 C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\TestApplication\obj\Debug\TestApplication.exe
 C:\Users\Simon\Documents\Visual Studio 2015\Projects\DB\Hand2in\TestApplication\obj\Debug\TestApplication.pdb
+C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\TestApplication\bin\Debug\TestApplication.exe.config
+C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\TestApplication\bin\Debug\TestApplication.exe
+C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\TestApplication\bin\Debug\TestApplication.pdb
+C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\TestApplication\bin\Debug\DataAccesTier.dll
+C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\TestApplication\bin\Debug\DataAccesTier.pdb
+C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\TestApplication\obj\Debug\TestApplication.csprojResolveAssemblyReference.cache
+C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\TestApplication\obj\Debug\TestApplication.exe
+C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\TestApplication\obj\Debug\TestApplication.pdb
