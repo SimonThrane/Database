@@ -11,6 +11,8 @@ using System.Text;
 
 public class Person
 {
+    public string PersonNummer { get; set; }
+
 	public virtual string Efternavn
 	{
 		get;
