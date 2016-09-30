@@ -20,3 +20,5 @@ C:\Users\Simon\Desktop\Database\Hand2in\TestApplication\bin\Debug\DataAccesTier.
 C:\Users\Simon\Desktop\Database\Hand2in\TestApplication\obj\Debug\TestApplication.csprojResolveAssemblyReference.cache
 C:\Users\Simon\Desktop\Database\Hand2in\TestApplication\obj\Debug\TestApplication.exe
 C:\Users\Simon\Desktop\Database\Hand2in\TestApplication\obj\Debug\TestApplication.pdb
+C:\Users\Simon\Desktop\Database\Hand2in\TestApplication\bin\Debug\AdresseKartotek.dll
+C:\Users\Simon\Desktop\Database\Hand2in\TestApplication\bin\Debug\AdresseKartotek.pdb

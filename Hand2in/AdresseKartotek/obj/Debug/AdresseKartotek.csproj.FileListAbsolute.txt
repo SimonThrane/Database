@@ -5,6 +5,5 @@ C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\AdresseKartotek\obj
 C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\AdresseKartotek\obj\Debug\AdresseKartotek.pdb
 C:\Users\Simon\Desktop\Database\Hand2in\AdresseKartotek\bin\Debug\AdresseKartotek.dll
 C:\Users\Simon\Desktop\Database\Hand2in\AdresseKartotek\bin\Debug\AdresseKartotek.pdb
-C:\Users\Simon\Desktop\Database\Hand2in\AdresseKartotek\obj\Debug\AdresseKartotek.csprojResolveAssemblyReference.cache
 C:\Users\Simon\Desktop\Database\Hand2in\AdresseKartotek\obj\Debug\AdresseKartotek.dll
 C:\Users\Simon\Desktop\Database\Hand2in\AdresseKartotek\obj\Debug\AdresseKartotek.pdb
