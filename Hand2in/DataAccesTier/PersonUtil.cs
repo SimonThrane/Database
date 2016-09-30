@@ -141,9 +141,63 @@ namespace DataAccesTier
 
         }
 
+        public void addTelefon(ref Telefon tlf)
+        {
+            // prepare command string using paramters in string and returning the given identity 
+
+            string insertStringParam = @"INSERT INTO [Telefon] (TelefonNummerID)
+                                                    VALUES  (@TelefonNummerID)";
+
+            using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
+            {
+                // Get your parameters ready                    
+                cmd.Parameters.AddWithValue("@TelefonNummerID", tlf.TelefonNummer);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void getTelefon(ref Telefon tlf)
+        {
+            // prepare command string using paramters in string and returning the given identity 
+
+            string sqlcmd = @"SELECT * FROM [har] WHERE (TelefonNummerID= TelefonNummerID)";
+
+            using (SqlCommand cmd = new SqlCommand(sqlcmd, OpenConnection))
+            {
+                // Get your parameters ready                    
+                cmd.Parameters.AddWithValue("@TelefonNummerID", tlf.TelefonNummer);
+
+                SqlDataReader rdr = null;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    tlf.TelefonNummer = (string) rdr["TelefonNummerID"];
+                    tlf.Type = (string) rdr["Type"];
+                }
+            }
+        }
 
 
+        public void addTelefonOwner(ref Telefon tlf, ref Person person)
+        {
+            // prepare command string using paramters in string and returning the given identity 
 
+            string insertStringParam = @"INSERT INTO [har] (TelefonNummerID, PersonNummer, Type)
+                                                    VALUES  (@TelefonNummerID, @PersonNummer, @Type)";
+
+            using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
+            {
+                // Get your parameters ready                    
+                cmd.Parameters.AddWithValue("@TelefonNummerID", tlf.TelefonNummer);
+                cmd.Parameters.AddWithValue("@PersonNummer", person.PersonNummer);
+                cmd.Parameters.AddWithValue("@Type", tlf.Type);
+
+                person.Telefon.Add(tlf);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
 
     }
 

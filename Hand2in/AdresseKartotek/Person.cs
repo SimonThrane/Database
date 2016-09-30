@@ -43,13 +43,13 @@ public class Person
 		set;
 	}
 
-	public virtual IEnumerable<Adresse> Adresser
+	public virtual List<Adresse> Adresser
 	{
 		get;
 		set;
 	}
 
-	public virtual IEnumerable<Telefon> Telefon
+	public virtual List<Telefon> Telefon
 	{
 		get;
 		set;
