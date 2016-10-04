@@ -103,14 +103,13 @@ namespace DataAccesTier
                 while (rdr.Read())
                 {
                     tlf = new TelefonBinding(); // 
-
-                    tlf.telefon.TelefonNummer = (string) rdr["TelefonNummerID"];
+                    string tlfNummer = (string) rdr["TelefonNummerID"];
+                    tlf.telefon = new Telefon {TelefonNummer = tlfNummer};
                     tlf.Type = (string) rdr["Type"];
                     telefons.Add(tlf);
                 }
                 return telefons;
             }
-
         }
 
         public List<AdresseBinding> getPersons_Adresse(ref Person person)
@@ -159,7 +158,6 @@ namespace DataAccesTier
 
                 return adresses;
             }
-
         }
 
         public void addTelefon(ref Telefon tlf)
@@ -202,7 +200,6 @@ namespace DataAccesTier
         public void addTelefonToOwner(ref TelefonBinding tlf, ref Person person)
         {
 
-            insertPerson(ref person);
             addTelefonBinding(ref tlf);
 
             // prepare command string using paramters in string and returning the given identity 
@@ -260,6 +257,7 @@ namespace DataAccesTier
             }
         }
 
+
         public void InsertAdresse(ref AdresseBinding adressebinding, ref Person person)
         {
 
@@ -285,6 +283,119 @@ namespace DataAccesTier
 
 
 
+        public void UpdateTelefonBinding(ref TelefonBinding tlf, ref Person person)
+        {
+            // prepare command string
+            string updateString =
+                @"UPDATE [har]
+                        SET Type=@Type, PersonNummer = @PersonNummer
+                        WHERE TelefonNummerID=@TelefonNummer";
+
+            using (SqlCommand cmd = new SqlCommand(updateString, OpenConnection))
+            {
+                // Get your parameters ready 
+                cmd.Parameters.AddWithValue("@Type", tlf.Type);
+                cmd.Parameters.AddWithValue("@PersonNummer", person.PersonNummer);
+                cmd.Parameters.AddWithValue("@TelefonNummerID", tlf.telefon.TelefonNummer);
+                
+                var id = (int)cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteCurrentTelefon(ref TelefonBinding tlf, ref Person person)
+        {
+            DeleteTelefon(tlf.telefon);
+
+            string deleteString = @"DELETE FROM [har] WHERE (PersonNummer = @PersonNummer)";
+            using (SqlCommand cmd = new SqlCommand(deleteString, OpenConnection))
+            {
+                cmd.Parameters.AddWithValue("@PersonNummer", person.PersonNummer);
+
+                var id = (int)cmd.ExecuteNonQuery();
+                tlf = null;
+            }
+
+            
+
+        }
+        public void DeleteTelefon(Telefon tlf)
+        {
+            string deleteString = @"DELETE FROM [Telefon] WHERE (TelefonNummerID = @TelefonNummerID)";
+
+            using (SqlCommand cmd = new SqlCommand(deleteString, OpenConnection))
+            {
+                cmd.Parameters.AddWithValue("@TelefonNummerID", tlf.TelefonNummer);
+
+                var id = (int)cmd.ExecuteNonQuery();
+                tlf = null;
+            }
+        }
+
+        public void UpdateAdresse(ref Adresse adr)
+        {
+            // prepare command string
+            string updateString =
+                @"UPDATE [Adresse]
+                        SET Vejnavn = @Vejnavn,Husnummer = @Husnummer, Postnummer = @Postnnummer, Bynavn = @Bynavn 
+                        WHERE AdresseID=@AdresseID";
+
+            using (SqlCommand cmd = new SqlCommand(updateString, OpenConnection))
+            {
+                // Get your parameters ready 
+                cmd.Parameters.AddWithValue("@Vejnavn", adr.Vejnavn);
+                cmd.Parameters.AddWithValue("@Husnummer", adr.Husnummer);
+                cmd.Parameters.AddWithValue("@Postnummer", adr.Postummer);
+                cmd.Parameters.AddWithValue("@Bynavn", adr.Bynavn);
+                cmd.Parameters.AddWithValue("@AdresseID", adr.AdresseId);
+                
+                var id = (int)cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateAdresseBinding(ref AdresseBinding adr, ref Person person)
+        {
+            // prepare command string
+            string updateString =
+                @"UPDATE [erPaa]
+                        SET PersonNummer = @PersonNummer,Type = @Type
+                        WHERE AdresseID=@AdresseID";
+
+            using (SqlCommand cmd = new SqlCommand(updateString, OpenConnection))
+            {
+                // Get your parameters ready 
+                cmd.Parameters.AddWithValue("@PersonNummer", person.PersonNummer);
+                cmd.Parameters.AddWithValue("@Type", adr.Type);
+                cmd.Parameters.AddWithValue("@AdresseID", adr.adresse.AdresseId);
+
+                var id = (int)cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteAdresse(ref Adresse adr)
+        {
+            string deleteString = @"DELETE FROM [Adresse] WHERE (AdresseID = @AdresseID)";
+
+            using (SqlCommand cmd = new SqlCommand(deleteString, OpenConnection))
+            {
+                cmd.Parameters.AddWithValue("@AdresseID", adr.AdresseId);
+
+                var id = (int)cmd.ExecuteNonQuery();
+                adr = null;
+            }
+        }
+
+        public void DeleteAdresseBinding(ref AdresseBinding adr)
+        {
+            string deleteString = @"DELETE FROM [erPaa] WHERE (AdresseID = @AdresseID)";
+
+            using (SqlCommand cmd = new SqlCommand(deleteString, OpenConnection))
+            {
+                cmd.Parameters.AddWithValue("@AdresseID", adr.adresse.AdresseId);
+
+                var id = (int)cmd.ExecuteNonQuery();
+                adr = null;
+            }
+        }
     }
 
 }
