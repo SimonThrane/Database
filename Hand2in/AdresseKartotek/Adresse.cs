@@ -34,12 +34,7 @@ public class Adresse
 		get;
 		set;
 	}
-
-	public virtual string Type
-	{
-		get;
-		set;
-	}
+    public int AdresseId { get; set; }
 
 }
 

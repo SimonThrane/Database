@@ -113,7 +113,7 @@ namespace DataAccesTier
 
         }
 
-        public List<Adresse> getPersons_Adresse(ref Person person)
+        public List<AdresseBinding> getPersons_Adresse(ref Person person)
         {
             string selectToolboxAdresseString = @"SELECT *
                                                   FROM [erPaa] 
@@ -125,17 +125,38 @@ namespace DataAccesTier
                 cmd.Parameters.AddWithValue("@PersonNummer", person.PersonNummer);
 
                 rdr = cmd.ExecuteReader();
-                List<Adresse> adresses = new List<Adresse>();
+                List<AdresseBinding> adresses = new List<AdresseBinding>();
 
-                Adresse adr = null;
+                AdresseBinding adr = null;
                 while (rdr.Read())
                 {
-                    adr = new Adresse(); // 
+                    adr = new AdresseBinding
+                    {
+                        adresse = new Adresse(),
+                        Type = (string) rdr["Type"]
+                    }; 
 
-                    adr.Type = (string)rdr["Type"];
-                    //adr.AdresseID = (string)rdr["AdresseID"];
+                    adr.adresse.AdresseId = (int)rdr["AdresseID"];
                     adresses.Add(adr);
                 }
+
+                foreach (var item in adresses)
+                {
+                    string getAdresse = "SELECT * FROM [Adresse] WHERE AdresseID = " + item.adresse.AdresseId;
+                    using (SqlCommand cmd2 = new SqlCommand(getAdresse, OpenConnection))
+                    {
+                        SqlDataReader rdr2 = null;
+                        rdr2 = cmd.ExecuteReader();
+                        while (rdr2.Read())
+                        {
+                            item.adresse.Bynavn = (string) rdr2["Bynavn"];
+                            item.adresse.Husnummer = (string) rdr2["Husnummer"];
+                            item.adresse.Postummer = (int) rdr2["Postnummer"];
+                            item.adresse.Vejnavn = (string) rdr2["Vejnavn"];
+                        }
+                    }
+                }
+
                 return adresses;
             }
 
@@ -239,7 +260,30 @@ namespace DataAccesTier
             }
         }
 
-      
+        public void InsertAdresse(ref AdresseBinding adressebinding, ref Person person)
+        {
+
+            string commandstring = @"INSERT INTO [Adresse] (Bynavn,Husnummer,Postnummer,Vejnavn)
+                                    OUTPUT INSERTED.AdresseId
+                                    VALUES (@Bynavn,@Husnummer,@Postnummer,@Vejnavn)";
+            int AdresseId, personId;
+
+            using (SqlCommand cmd = new SqlCommand(commandstring, OpenConnection))
+            {
+                cmd.Parameters.AddWithValue("@Bynavn", adressebinding.adresse.Bynavn);
+                cmd.Parameters.AddWithValue("@Husnummer", adressebinding.adresse.Husnummer);
+                cmd.Parameters.AddWithValue("@Postnummer", adressebinding.adresse.Postummer);
+                cmd.Parameters.AddWithValue("@Vejnavn", adressebinding.adresse.Vejnavn);
+                AdresseId = (int)cmd.ExecuteScalar();
+            }
+
+            string commandstring2 = @"INSERT INTO [Person] (AdresseId)
+                                    OUTPUT INSERTED.AdresseId
+                                    VALUES (@Bynavn,@Husnummer,@Postnummer,@Type,@Vejnavn)";
+
+        }
+
+
 
     }
 
