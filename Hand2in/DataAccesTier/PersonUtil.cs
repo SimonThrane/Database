@@ -301,7 +301,25 @@ namespace DataAccesTier
                 cmd.Parameters.AddWithValue("@Postnummer", adr.Postummer);
                 cmd.Parameters.AddWithValue("@Bynavn", adr.Bynavn);
                 cmd.Parameters.AddWithValue("@AdresseID", adr.AdresseID);
+                
+                var id = (int)cmd.ExecuteNonQuery();
+            }
+        }
 
+        public void UpdateAdresseBinding(ref AdresseBinding adr, ref Person person)
+        {
+            // prepare command string
+            string updateString =
+                @"UPDATE [erPaa]
+                        SET PersonNummer = @PersonNummer,Type = @Type
+                        WHERE AdresseID=@AdresseID";
+
+            using (SqlCommand cmd = new SqlCommand(updateString, OpenConnection))
+            {
+                // Get your parameters ready 
+                cmd.Parameters.AddWithValue("@PersonNummer", person.PersonNummer);
+                cmd.Parameters.AddWithValue("@Type", adr.Type);
+                cmd.Parameters.AddWithValue("@AdresseID", adr.adresse.AdresseID);
 
                 var id = (int)cmd.ExecuteNonQuery();
             }
