@@ -7,4 +7,3 @@ C:\Users\Simon\Desktop\Database\Hand2in\AdresseKartotek\bin\Debug\AdresseKartote
 C:\Users\Simon\Desktop\Database\Hand2in\AdresseKartotek\bin\Debug\AdresseKartotek.pdb
 C:\Users\Simon\Desktop\Database\Hand2in\AdresseKartotek\obj\Debug\AdresseKartotek.dll
 C:\Users\Simon\Desktop\Database\Hand2in\AdresseKartotek\obj\Debug\AdresseKartotek.pdb
-C:\Users\Simon\Desktop\Database\Hand2in\AdresseKartotek\obj\Debug\AdresseKartotek.csprojResolveAssemblyReference.cache

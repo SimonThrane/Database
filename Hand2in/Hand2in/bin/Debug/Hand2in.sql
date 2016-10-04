@@ -40,69 +40,6 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Dropping [dbo].[fk_erPaa]...';
-
-
-GO
-ALTER TABLE [dbo].[erPaa] DROP CONSTRAINT [fk_erPaa];
-
-
-GO
-PRINT N'Starting rebuilding table [dbo].[Adresse]...';
-
-
-GO
-BEGIN TRANSACTION;
-
-SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
-
-SET XACT_ABORT ON;
-
-CREATE TABLE [dbo].[tmp_ms_xx_Adresse] (
-    [AdresseID]   BIGINT        IDENTITY (1, 1) NOT NULL,
-    [Vejnavn]     NVARCHAR (50) NOT NULL,
-    [Husnummer]   NVARCHAR (10) NOT NULL,
-    [Bynavn]      NVARCHAR (50) NOT NULL,
-    [Postnummer ] INT           NOT NULL,
-    CONSTRAINT [tmp_ms_xx_constraint_pk_Adresse1] PRIMARY KEY CLUSTERED ([AdresseID] ASC)
-);
-
-IF EXISTS (SELECT TOP 1 1 
-           FROM   [dbo].[Adresse])
-    BEGIN
-        SET IDENTITY_INSERT [dbo].[tmp_ms_xx_Adresse] ON;
-        INSERT INTO [dbo].[tmp_ms_xx_Adresse] ([AdresseID], [Vejnavn], [Husnummer], [Bynavn], [Postnummer ])
-        SELECT   [AdresseID],
-                 [Vejnavn],
-                 [Husnummer],
-                 [Bynavn],
-                 [Postnummer ]
-        FROM     [dbo].[Adresse]
-        ORDER BY [AdresseID] ASC;
-        SET IDENTITY_INSERT [dbo].[tmp_ms_xx_Adresse] OFF;
-    END
-
-DROP TABLE [dbo].[Adresse];
-
-EXECUTE sp_rename N'[dbo].[tmp_ms_xx_Adresse]', N'Adresse';
-
-EXECUTE sp_rename N'[dbo].[tmp_ms_xx_constraint_pk_Adresse1]', N'pk_Adresse', N'OBJECT';
-
-COMMIT TRANSACTION;
-
-SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
-
-
-GO
-PRINT N'Creating [dbo].[fk_erPaa]...';
-
-
-GO
-ALTER TABLE [dbo].[erPaa] WITH NOCHECK
-    ADD CONSTRAINT [fk_erPaa] FOREIGN KEY ([AdresseID]) REFERENCES [dbo].[Adresse] ([AdresseID]) ON DELETE CASCADE ON UPDATE CASCADE;
-
-
-GO
 PRINT N'Creating [dbo].[fk_Person]...';
 
 
@@ -120,8 +57,6 @@ USE [$(DatabaseName)];
 
 
 GO
-ALTER TABLE [dbo].[erPaa] WITH CHECK CHECK CONSTRAINT [fk_erPaa];
-
 ALTER TABLE [dbo].[Person] WITH CHECK CHECK CONSTRAINT [fk_Person];
 
 

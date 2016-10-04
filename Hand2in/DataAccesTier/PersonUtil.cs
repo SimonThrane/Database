@@ -54,13 +54,12 @@ namespace DataAccesTier
             // prepare command string
             string updateString =
                @"UPDATE Person
-                        SET Telefon= @Telefon, AdresseID=@AdresseID Efternavn = @Efternavn, Type = @Type, Fornavn = @Fornavn, Mellemnavn=@Mellemnavn
+                        SET AdresseID=@AdresseID Efternavn = @Efternavn, Type = @Type, Fornavn = @Fornavn, Mellemnavn=@Mellemnavn
                         WHERE PersonNummer = @PersonNummer";
 
             using (SqlCommand cmd = new SqlCommand(updateString, OpenConnection))
             {
                 // Get your parameters ready 
-                cmd.Parameters.AddWithValue("@Telefon", person.Telefon);
                 cmd.Parameters.AddWithValue("@Efternavn", person.Efternavn);
                 cmd.Parameters.AddWithValue("@Fornavn", person.Fornavn);
                 cmd.Parameters.AddWithValue("@PersonNummer", person.PersonNummer);
@@ -85,11 +84,12 @@ namespace DataAccesTier
 
         }
 
-        public List<Telefon> getPersons_Telefon(ref Person person)
+        public List<TelefonBinding> getPersons_Telefoner(ref Person person)
         {
             string selectToolboxTelefonString = @"SELECT *
                                                   FROM [har] 
                                                   WHERE ([PersonNummer] = @PersonNummer)";
+
             using (var cmd = new SqlCommand(selectToolboxTelefonString, OpenConnection))
             {
 
@@ -97,15 +97,15 @@ namespace DataAccesTier
                 cmd.Parameters.AddWithValue("@PersonNummer", person.PersonNummer);
 
                 rdr = cmd.ExecuteReader();
-                List<Telefon> telefons = new List<Telefon>();
+                List<TelefonBinding> telefons = new List<TelefonBinding>();
 
-                Telefon tlf = null;
+                TelefonBinding tlf = null;
                 while (rdr.Read())
                 {
-                    tlf = new Telefon(); // 
+                    tlf = new TelefonBinding(); // 
 
-                    tlf.TelefonNummer = (string) rdr["TelefonNummerID"];
-                    tlf.Type= (string) rdr["Type"];
+                    tlf.telefon.TelefonNummer = (string) rdr["TelefonNummerID"];
+                    tlf.Type = (string) rdr["Type"];
                     telefons.Add(tlf);
                 }
                 return telefons;
@@ -161,7 +161,7 @@ namespace DataAccesTier
         {
             // prepare command string using paramters in string and returning the given identity 
 
-            string sqlcmd = @"SELECT * FROM [har] WHERE (TelefonNummerID= TelefonNummerID)";
+            string sqlcmd = @"SELECT * FROM [Telefon] WHERE (TelefonNummerID= TelefonNummerID)";
 
             using (SqlCommand cmd = new SqlCommand(sqlcmd, OpenConnection))
             {
@@ -173,14 +173,17 @@ namespace DataAccesTier
                 if (rdr.Read())
                 {
                     tlf.TelefonNummer = (string) rdr["TelefonNummerID"];
-                    tlf.Type = (string) rdr["Type"];
                 }
             }
         }
 
 
-        public void addTelefonOwner(ref Telefon tlf, ref Person person)
+        public void addTelefonToOwner(ref TelefonBinding tlf, ref Person person)
         {
+
+            insertPerson(ref person);
+            addTelefonBinding(ref tlf);
+
             // prepare command string using paramters in string and returning the given identity 
 
             string insertStringParam = @"INSERT INTO [har] (TelefonNummerID, PersonNummer, Type)
@@ -189,15 +192,54 @@ namespace DataAccesTier
             using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
             {
                 // Get your parameters ready                    
-                cmd.Parameters.AddWithValue("@TelefonNummerID", tlf.TelefonNummer);
+                cmd.Parameters.AddWithValue("@TelefonNummerID", tlf.telefon.TelefonNummer);
                 cmd.Parameters.AddWithValue("@PersonNummer", person.PersonNummer);
                 cmd.Parameters.AddWithValue("@Type", tlf.Type);
 
-                person.Telefon.Add(tlf);
+                person.Telefoner.Add(tlf);
 
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public void addTelefonBinding(ref TelefonBinding tlf)
+        {
+            // prepare command string using paramters in string and returning the given identity 
+            string insertStringParam = @"INSERT INTO [Har] (TelefonNummerID, Type)
+                                                    VALUES  (@TelefonNummerID, @Type)";
+
+            using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
+            {
+                // Get your parameters ready                    
+                cmd.Parameters.AddWithValue("@TelefonNummerID", tlf.telefon.TelefonNummer);
+                cmd.Parameters.AddWithValue("@Type", tlf.Type);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void getTelefonOwner(ref TelefonBinding tlf, ref Person person)
+        {
+            // prepare command string using paramters in string and returning the given identity 
+            string sqlcmd = @"SELECT * FROM [har] WHERE (TelefonNummerID= TelefonNummerID)";
+
+            using (SqlCommand cmd = new SqlCommand(sqlcmd, OpenConnection))
+            {
+                // Get your parameters ready                    
+                cmd.Parameters.AddWithValue("@TelefonNummerID", tlf.telefon.TelefonNummer);
+
+
+                SqlDataReader rdr = null;
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    tlf.telefon.TelefonNummer = (string)rdr["TelefonNummerID"];
+                    tlf.Type = (string) rdr["Type"];
+                    person.PersonNummer = (string) rdr["PersonNummer"];
+                }
+            }
+        }
+
+      
 
     }
 

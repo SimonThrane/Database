@@ -17,11 +17,6 @@ public class Telefon
 		set;
 	}
 
-	public virtual string Type
-	{
-		get;
-		set;
-	}
-
+    
 }
 

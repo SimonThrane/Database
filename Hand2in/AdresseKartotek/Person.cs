@@ -43,17 +43,40 @@ public class Person
 		set;
 	}
 
-	public virtual List<Adresse> Adresser
+	public virtual List<AdresseBinding> Adresser
 	{
 		get;
 		set;
 	}
 
-	public virtual List<Telefon> Telefon
+	public virtual List<TelefonBinding> Telefoner
 	{
 		get;
 		set;
 	}
+
+}
+
+public class AdresseBinding
+{
+    public virtual Adresse adresse
+    {
+        get;
+        set;
+    }
+
+    public string Type { get; set; }
+}
+
+public class TelefonBinding
+{
+    public virtual Telefon telefon
+    {
+        get;
+        set;
+    }
+    
+    public string Type { get; set; }
 
 }
 
