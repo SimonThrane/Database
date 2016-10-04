@@ -279,6 +279,8 @@ namespace DataAccesTier
                                     OUTPUT INSERTED.AdresseId
                                     VALUES (@Bynavn,@Husnummer,@Postnummer,@Type,@Vejnavn)";
 
+            //Der mangler noget her
+
         }
 
 
