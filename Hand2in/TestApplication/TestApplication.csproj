@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdresseKartotek\AdresseKartotek.csproj">
+      <Project>{65D1B9E3-A1E4-4851-ABAE-2DBD3BCD359D}</Project>
+      <Name>AdresseKartotek</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccesTier\DataAccesTier.csproj">
       <Project>{9d12468c-81a8-43a0-ac54-7412fc87a061}</Project>
       <Name>DataAccesTier</Name>
