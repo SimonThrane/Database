@@ -12,7 +12,7 @@
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="Hand2in.dll" />
-			<Metadata Name="FileName" Value="C:\USERS\KASPE\DESKTOP\SKOLE\4-SEMESTER\DAB\DATABASE\HAND2IN\HAND2IN\OBJ\DEBUG\HAND2IN.DLL" />
+			<Metadata Name="FileName" Value="C:\USERS\SIMON\DESKTOP\DATABASE\HAND2IN\HAND2IN\OBJ\DEBUG\HAND2IN.DLL" />
 			<Metadata Name="AssemblyName" Value="Hand2in" />
 			<Metadata Name="PermissionSet" Value="SAFE" />
 			<Metadata Name="Owner" Value="" />
@@ -20,7 +20,7 @@
 			<Metadata Name="IsVisible" Value="True" />
 			<Metadata Name="IsModelAware" Value="True" />
 			<Metadata Name="SkipCreationIfEmpty" Value="True" />
-			<Metadata Name="AssemblySymbolsName" Value="C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\Hand2in\obj\Debug\Hand2in.pdb" />
+			<Metadata Name="AssemblySymbolsName" Value="C:\Users\Simon\Desktop\Database\Hand2in\Hand2in\obj\Debug\Hand2in.pdb" />
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
 	</Header>
