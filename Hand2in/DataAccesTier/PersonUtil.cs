@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace DataAccesTier
                                                     VALUES (@PersonNummer,@Fornavn, @Efternavn, @Type, @Mellemnavn, @AdresseID)";
 
 
-            using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
+                using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
                 {
                     // Get your parameters ready 
                     cmd.Parameters.AddWithValue("@PersonNummer",person.PersonNummer);
@@ -47,7 +48,13 @@ namespace DataAccesTier
                     
                     cmd.ExecuteNonQuery();
                 }
-            }
+
+            var adresseBinding = person.Adresser.Last();
+            InsertAdresse(ref adresseBinding, ref person);
+            var telefonBinding = person.Telefoner.Last();
+            addTelefon(ref telefonBinding, ref person);
+
+        }
 
         public void updateCurrentPerson(ref Person person)
         {
@@ -69,10 +76,11 @@ namespace DataAccesTier
 
                 var id = (int)cmd.ExecuteNonQuery();
             }           
-        }
+        }  
 
         public void DeleteCurrentPerson(ref Person person)
         {
+
             string deleteString = @"DELETE FROM Person WHERE (PersonNummer = @PersonNummer)";
             using (SqlCommand cmd = new SqlCommand(deleteString, OpenConnection))
             {
@@ -160,20 +168,31 @@ namespace DataAccesTier
             }
         }
 
-        public void addTelefon(ref Telefon tlf)
+        public void addTelefon(ref TelefonBinding tlf, ref Person person)
         {
-            // prepare command string using paramters in string and returning the given identity 
-
             string insertStringParam = @"INSERT INTO [Telefon] (TelefonNummerID)
                                                     VALUES  (@TelefonNummerID)";
 
             using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
             {
                 // Get your parameters ready                    
-                cmd.Parameters.AddWithValue("@TelefonNummerID", tlf.TelefonNummer);
-
+                cmd.Parameters.AddWithValue("@TelefonNummerID", tlf.telefon.TelefonNummer);
                 cmd.ExecuteNonQuery();
             }
+
+            string insertStringParam1 = @"INSERT INTO [har] (TelefonNummerID, PersonNummer, Type)
+                                                    VALUES  (@TelefonNummerID, @PersonNummer, @Type)";
+
+            using (SqlCommand cmd = new SqlCommand(insertStringParam1, OpenConnection))
+            {
+                // Get your parameters ready                    
+                cmd.Parameters.AddWithValue("@TelefonNummerID", tlf.telefon.TelefonNummer);
+                cmd.Parameters.AddWithValue("@PersonNummer", person.PersonNummer);
+                cmd.Parameters.AddWithValue("@Type", tlf.Type);
+                cmd.ExecuteNonQuery();
+            }
+
+
         }
 
         public void getTelefon(ref Telefon tlf)
@@ -264,7 +283,7 @@ namespace DataAccesTier
             string commandstring = @"INSERT INTO [Adresse] (Bynavn,Husnummer,Postnummer,Vejnavn)
                                     OUTPUT INSERTED.AdresseId
                                     VALUES (@Bynavn,@Husnummer,@Postnummer,@Vejnavn)";
-            int AdresseId, personId;
+            int AdresseId;
 
             using (SqlCommand cmd = new SqlCommand(commandstring, OpenConnection))
             {
@@ -275,12 +294,18 @@ namespace DataAccesTier
                 AdresseId = (int)cmd.ExecuteScalar();
             }
 
-            string commandstring2 = @"INSERT INTO [Person] (AdresseId)
-                                    OUTPUT INSERTED.AdresseId
-                                    VALUES (@Bynavn,@Husnummer,@Postnummer,@Type,@Vejnavn)";
+            adressebinding.adresse.AdresseId = AdresseId;
 
-            //Der mangler noget her
+            string commandstring2 = @"INSERT INTO [erPaa] (AdresseId, PersonNummer, Type)
+                                    VALUES (@AdresseId,@PersonNummer,@Type)";
 
+            using (SqlCommand cmd = new SqlCommand(commandstring2, OpenConnection))
+            {
+                cmd.Parameters.AddWithValue("@AdresseId", adressebinding.adresse.AdresseId);
+                cmd.Parameters.AddWithValue("@Type", adressebinding.Type);
+                cmd.Parameters.AddWithValue("@PersonNummer", person.PersonNummer);
+                cmd.ExecuteScalar();
+            }
         }
 
 

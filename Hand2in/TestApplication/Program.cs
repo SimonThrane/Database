@@ -12,6 +12,7 @@ namespace TestApplication
         static void Main(string[] args)
         {
 
+<<<<<<< HEAD
             List<AdresseBinding> Ejendomme = new List<AdresseBinding>
             {
                 {new AdresseBinding {Type = "Sommerhus",adresse = new Adresse {AdresseId = 02,Bynavn = "Odder", Husnummer = "1",Postummer = 8620,Vejnavn = "Saksildvej"}} },
@@ -88,6 +89,9 @@ namespace TestApplication
             
 
             db.InsertAdresse(nyAdresse,"Sommerhus",p1};
+=======
+            var Test = new PersonDataUtil();
+>>>>>>> 09f5f6277c25b69c10e2a04a05a92e5ad0145fe3
 
         }
     }
