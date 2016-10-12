@@ -301,9 +301,9 @@ namespace DataAccesTier
         {
 
             string commandstring = @"INSERT INTO [Adresse] (Bynavn,Husnummer,Postnummer,Vejnavn)
-                                    OUTPUT INSERTED.AdresseId
+                                    OUTPUT INSERTED.AdresseID
                                     VALUES (@Bynavn,@Husnummer,@Postnummer,@Vejnavn)";
-            int AdresseId;
+            long AdresseId;
 
             using (SqlCommand cmd = new SqlCommand(commandstring, OpenConnection))
             {
@@ -311,20 +311,19 @@ namespace DataAccesTier
                 cmd.Parameters.AddWithValue("@Husnummer", adressebinding.adresse.Husnummer);
                 cmd.Parameters.AddWithValue("@Postnummer", adressebinding.adresse.Postummer);
                 cmd.Parameters.AddWithValue("@Vejnavn", adressebinding.adresse.Vejnavn);
-                AdresseId = (int)cmd.ExecuteScalar();
+                AdresseId = (long)cmd.ExecuteScalar();
             }
 
-            adressebinding.adresse.AdresseId = AdresseId;
 
-            string commandstring2 = @"INSERT INTO [erPaa] (AdresseId, PersonNummer, Type)
-                                    VALUES (@AdresseId,@PersonNummer,@Type)";
+            string commandstring2 = @"INSERT INTO [erPaa] (AdresseID, PersonNummer, Type)
+                                    VALUES (@AdresseID,@PersonNummer,@Type)";
 
             using (SqlCommand cmd = new SqlCommand(commandstring2, OpenConnection))
             {
-                cmd.Parameters.AddWithValue("@AdresseId", adressebinding.adresse.AdresseId);
+                cmd.Parameters.AddWithValue("@AdresseID", AdresseId);
                 cmd.Parameters.AddWithValue("@Type", adressebinding.Type);
                 cmd.Parameters.AddWithValue("@PersonNummer", person.PersonNummer);
-                cmd.ExecuteScalar();
+                cmd.ExecuteNonQuery();
             }
         }
 

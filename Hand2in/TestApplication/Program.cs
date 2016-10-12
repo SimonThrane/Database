@@ -69,7 +69,7 @@ namespace TestApplication
                 Mellemnavn = "",
                 Fornavn = "Mads",
                 PersonNummer = "1234123413",
-                Telefoner = telefoner,
+                Telefoner = telefoner2,
                 Type = "Familie"
             };
 
