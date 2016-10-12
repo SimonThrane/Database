@@ -35,8 +35,7 @@ namespace DataAccesTier
                 string insertStringParam = @"INSERT INTO [Person] (PersonNummer,Fornavn, Efternavn, Type, Mellemnavn, AdresseID)
                                                     VALUES (@PersonNummer,@Fornavn, @Efternavn, @Type, @Mellemnavn, @AdresseID)";
 
-
-                using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
+               using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
                 {
                     // Get your parameters ready 
                     cmd.Parameters.AddWithValue("@PersonNummer",person.PersonNummer);

@@ -45,7 +45,7 @@ PRINT N'Creating [dbo].[fk_Person]...';
 
 GO
 ALTER TABLE [dbo].[Person] WITH NOCHECK
-    ADD CONSTRAINT [fk_Person] FOREIGN KEY ([AdresseID]) REFERENCES [dbo].[Adresse] ([AdresseID]) ON UPDATE CASCADE;
+    ADD CONSTRAINT [fk_Person] FOREIGN KEY ([AdresseID]) REFERENCES [dbo].[Adresse] ([AdresseID]);
 
 
 GO

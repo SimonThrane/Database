@@ -13,11 +13,11 @@ C:\Users\Simon\Desktop\Database\Hand2in\Hand2in\obj\Debug\Hand2in.dll
 C:\Users\Simon\Desktop\Database\Hand2in\Hand2in\obj\Debug\Hand2in.pdb
 C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\Hand2in\bin\Debug\Hand2in.dll
 C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\Hand2in\bin\Debug\Hand2in.pdb
-C:\Users\Simon\Desktop\Database\Hand2in\Hand2in\obj\Debug\Model.xml
-C:\Users\Simon\Desktop\Database\Hand2in\Hand2in\obj\Debug\refactor.xml
-C:\Users\Simon\Desktop\Database\Hand2in\Hand2in\obj\Debug\postdeploy.sql
-C:\Users\Simon\Desktop\Database\Hand2in\Hand2in\obj\Debug\predeploy.sql
 C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\Hand2in\obj\Debug\Model.xml
 C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\Hand2in\obj\Debug\refactor.xml
 C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\Hand2in\obj\Debug\postdeploy.sql
 C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Hand2in\Hand2in\obj\Debug\predeploy.sql
+C:\Users\Simon\Desktop\Database\Hand2in\Hand2in\obj\Debug\Model.xml
+C:\Users\Simon\Desktop\Database\Hand2in\Hand2in\obj\Debug\refactor.xml
+C:\Users\Simon\Desktop\Database\Hand2in\Hand2in\obj\Debug\postdeploy.sql
+C:\Users\Simon\Desktop\Database\Hand2in\Hand2in\obj\Debug\predeploy.sql
