@@ -29,10 +29,25 @@ namespace DataAccesTier
 
         public void insertPerson(ref Person person)
         {
-           
-            // prepare command string using paramters in string and returning the given identity
 
-                string insertStringParam = @"INSERT INTO [Person] (PersonNummer,Fornavn, Efternavn, Type, Mellemnavn, AdresseID)
+            string commandstring = @"INSERT INTO [Adresse] (Bynavn,Husnummer,Postnummer,Vejnavn)
+                                    OUTPUT INSERTED.AdresseID
+                                    VALUES (@Bynavn,@Husnummer,@Postnummer,@Vejnavn)";
+            long AdresseId;
+
+            using (SqlCommand cmd = new SqlCommand(commandstring, OpenConnection))
+            {
+                cmd.Parameters.AddWithValue("@Bynavn", person.Adresse.Bynavn);
+                cmd.Parameters.AddWithValue("@Husnummer", person.Adresse.Husnummer);
+                cmd.Parameters.AddWithValue("@Postnummer", person.Adresse.Postummer);
+                cmd.Parameters.AddWithValue("@Vejnavn", person.Adresse.Vejnavn);
+                AdresseId = (long)cmd.ExecuteScalar();
+            }
+
+
+                // prepare command string using paramters in string and returning the given identity
+
+                string insertStringParam = @"INSERT INTO [Person] (PersonNummer,Fornavn, Efternavn, Type, Mellemnavn,AdresseID)
                                                     VALUES (@PersonNummer,@Fornavn, @Efternavn, @Type, @Mellemnavn, @AdresseID)";
 
                using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
@@ -43,16 +58,22 @@ namespace DataAccesTier
                     cmd.Parameters.AddWithValue("@Efternavn", person.Efternavn);
                     cmd.Parameters.AddWithValue("@Type", person.Type);
                     cmd.Parameters.AddWithValue("@Mellemnavn", person.Mellemnavn);
-                    cmd.Parameters.AddWithValue("@AdresseID", person.Adresse);
-                    
-                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@AdresseID", AdresseId);
+
+                cmd.ExecuteNonQuery();
                 }
 
-            var adresseBinding = person.Adresser.Last();
-            InsertAdresse(ref adresseBinding, ref person);
-            var telefonBinding = person.Telefoner.Last();
-            addTelefon(ref telefonBinding, ref person);
+            foreach (var item in person.Adresser)
+            {
+                var temp = item;
+                InsertAdresse(ref temp,ref person);
+            }
 
+            foreach (var item in person.Telefoner)
+            {
+                var temp = item;
+                InsertTelefon(ref temp, ref person);
+            }
         }
 
         public void updateCurrentPerson(ref Person person)
@@ -167,7 +188,7 @@ namespace DataAccesTier
             }
         }
 
-        public void addTelefon(ref TelefonBinding tlf, ref Person person)
+        public void InsertTelefon(ref TelefonBinding tlf, ref Person person)
         {
             string insertStringParam = @"INSERT INTO [Telefon] (TelefonNummerID)
                                                     VALUES  (@TelefonNummerID)";

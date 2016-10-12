@@ -14,8 +14,8 @@ namespace TestApplication
 
             List<AdresseBinding> Ejendomme = new List<AdresseBinding>
             {
-                {new AdresseBinding {Type = "Sommerhus",adresse = new Adresse {AdresseId = 02,Bynavn = "Odder", Husnummer = "1",Postummer = 8620,Vejnavn = "Saksildvej"}} },
-                {new AdresseBinding {Type = "Sommerhus",adresse = new Adresse {AdresseId = 03,Bynavn = "Odder", Husnummer = "2",Postummer = 8620,Vejnavn = "Saksildvej"}} }
+                {new AdresseBinding {Type = "Sommerhus",adresse = new Adresse {Bynavn = "Odder", Husnummer = "1",Postummer = 8620,Vejnavn = "Saksildvej"}} },
+                {new AdresseBinding {Type = "Sommerhus",adresse = new Adresse {Bynavn = "Odder", Husnummer = "2",Postummer = 8620,Vejnavn = "Saksildvej"}} }
             };
 
             List<TelefonBinding> telefoner = new List<TelefonBinding>
@@ -28,7 +28,6 @@ namespace TestApplication
                 Adresse =
                     new Adresse
                     {
-                        AdresseId = 1,
                         Bynavn = "Aarhus N",
                         Husnummer = "37",
                         Postummer = 8200,
@@ -36,16 +35,18 @@ namespace TestApplication
                     },
                 Adresser = Ejendomme,
                 Efternavn = "Madsen",
+                Mellemnavn = "Jacob",
                 Fornavn = "Mads",
                 PersonNummer = "1234123412",
-                Telefoner = telefoner
+                Telefoner = telefoner,
+                Type = "Ven"
             };
 
 
             List<AdresseBinding> Ejendomme2 = new List<AdresseBinding>
             {
-                {new AdresseBinding {Type = "Lejlighed",adresse = new Adresse {AdresseId = 05,Bynavn = "Horsens", Husnummer = "1",Postummer = 8620,Vejnavn = "Bildbjergvej"}} },
-                {new AdresseBinding {Type = "Sommerhus",adresse = new Adresse {AdresseId = 06,Bynavn = "København", Husnummer = "2",Postummer = 8620,Vejnavn = "Hovedgaden"}} }
+                {new AdresseBinding {Type = "Lejlighed",adresse = new Adresse {Bynavn = "Horsens", Husnummer = "1",Postummer = 8620,Vejnavn = "Bildbjergvej"}} },
+                {new AdresseBinding {Type = "Sommerhus",adresse = new Adresse {Bynavn = "København", Husnummer = "2",Postummer = 8620,Vejnavn = "Hovedgaden"}} }
             };
 
             List<TelefonBinding> telefoner2 = new List<TelefonBinding>
@@ -58,7 +59,6 @@ namespace TestApplication
                 Adresse =
                     new Adresse
                     {
-                        AdresseId = 04,
                         Bynavn = "Aarhus N",
                         Husnummer = "37",
                         Postummer = 8200,
@@ -66,9 +66,11 @@ namespace TestApplication
                     },
                 Adresser = Ejendomme,
                 Efternavn = "Madsen",
+                Mellemnavn = "",
                 Fornavn = "Mads",
                 PersonNummer = "1234123413",
-                Telefoner = telefoner
+                Telefoner = telefoner,
+                Type = "Familie"
             };
 
             PersonDataUtil db = new PersonDataUtil();
@@ -78,7 +80,6 @@ namespace TestApplication
 
             Adresse nyAdresse = new Adresse
             {
-                AdresseId = 10,
                 Bynavn = "København",
                 Husnummer = "1C",
                 Postummer = 4000,
