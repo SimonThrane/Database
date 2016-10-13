@@ -75,20 +75,50 @@ namespace TestApplication
 
             PersonDataUtil db = new PersonDataUtil();
 
+            //CREATE
+
             db.insertPerson(ref p1);
             db.insertPerson(ref p2);
 
-            Adresse nyAdresse = new Adresse
+            //READ
+
+            List<AdresseBinding> adresser = db.getPersons_Adresse(ref p1);
+
+            foreach (var adresse in adresser)
             {
-                Bynavn = "København",
-                Husnummer = "1C",
-                Postummer = 4000,
-                Vejnavn = "Lillevej"
-            };
+                Console.WriteLine(p1.Fornavn + " Bor på:" + adresse.adresse.Vejnavn + " nr. " + adresse.adresse.Husnummer
+                    + ", " + adresse.adresse.Bynavn + " " + adresse.adresse.Postummer);
+            }
 
-            
+            //UPDATE
 
-            //db.InsertAdresse(nyAdresse,"Sommerhus",p1};
+            adresser.First().adresse.Husnummer = "107";
+
+            Adresse temp = adresser.First().adresse;
+
+            db.UpdateAdresse(ref temp);
+
+            adresser = db.getPersons_Adresse(ref p1);
+
+            foreach (var adresse in adresser)
+            {
+                Console.WriteLine(p1.Fornavn + " Bor på:" + adresse.adresse.Vejnavn + " nr. " + adresse.adresse.Husnummer
+                    + ", " + adresse.adresse.Bynavn + " " + adresse.adresse.Postummer);
+            }
+
+            //DELETE
+
+            Adresse deleteAdress = adresser.Last().adresse;
+
+            db.DeleteAdresse(ref deleteAdress);
+
+            adresser = db.getPersons_Adresse(ref p1);
+
+            foreach (var adresse in adresser)
+            {
+                Console.WriteLine(p1.Fornavn + " Bor på:" + adresse.adresse.Vejnavn + " nr. " + adresse.adresse.Husnummer
+                    + ", " + adresse.adresse.Bynavn + " " + adresse.adresse.Postummer);
+            }
 
         }
     }

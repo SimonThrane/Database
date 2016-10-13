@@ -40,27 +40,6 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Creating [dbo].[fk_Person]...';
-
-
-GO
-ALTER TABLE [dbo].[Person] WITH NOCHECK
-    ADD CONSTRAINT [fk_Person] FOREIGN KEY ([AdresseID]) REFERENCES [dbo].[Adresse] ([AdresseID]);
-
-
-GO
-PRINT N'Checking existing data against newly created constraints';
-
-
-GO
-USE [$(DatabaseName)];
-
-
-GO
-ALTER TABLE [dbo].[Person] WITH CHECK CHECK CONSTRAINT [fk_Person];
-
-
-GO
 PRINT N'Update complete.';
 
 

@@ -163,7 +163,7 @@ namespace DataAccesTier
                         Type = (string) rdr["Type"]
                     }; 
 
-                    adr.adresse.AdresseId = (int)rdr["AdresseID"];
+                    adr.adresse.AdresseId = int.Parse(rdr["AdresseID"].ToString());
                     adresses.Add(adr);
                 }
 
@@ -173,12 +173,12 @@ namespace DataAccesTier
                     using (SqlCommand cmd2 = new SqlCommand(getAdresse, OpenConnection))
                     {
                         SqlDataReader rdr2 = null;
-                        rdr2 = cmd.ExecuteReader();
+                        rdr2 = cmd2.ExecuteReader();
                         while (rdr2.Read())
                         {
                             item.adresse.Bynavn = (string) rdr2["Bynavn"];
                             item.adresse.Husnummer = (string) rdr2["Husnummer"];
-                            item.adresse.Postummer = (int) rdr2["Postnummer"];
+                            item.adresse.Postummer = (int) rdr2["Postnummer "];
                             item.adresse.Vejnavn = (string) rdr2["Vejnavn"];
                         }
                     }
@@ -382,7 +382,7 @@ namespace DataAccesTier
             // prepare command string
             string updateString =
                 @"UPDATE [Adresse]
-                        SET Vejnavn = @Vejnavn,Husnummer = @Husnummer, Postnummer = @Postnnummer, Bynavn = @Bynavn 
+                        SET Vejnavn = @Vejnavn,Husnummer = @Husnummer, Postnummer = @Postnummer, Bynavn = @Bynavn 
                         WHERE AdresseID=@AdresseID";
 
             using (SqlCommand cmd = new SqlCommand(updateString, OpenConnection))
