@@ -20,7 +20,8 @@ namespace DataAccesTier
         {
             get
             {
-                var con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hand2in;Integrated Security=True");
+                var con = new SqlConnection(@"Data Source=I4DAB.ASE.AU.DK;Initial Catalog=E16I4DABH2Gr12; User ID=E16I4DABH2Gr12;Password=E16I4DABH2Gr12");
+                //var con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Hand2in;Integrated Security=True");
                 con.Open();
                 return con;
             }
@@ -130,10 +131,12 @@ namespace DataAccesTier
                 TelefonBinding tlf = null;
                 while (rdr.Read())
                 {
-                    tlf = new TelefonBinding(); // 
-                    string tlfNummer = (string) rdr["TelefonNummerID"];
-                    tlf.telefon = new Telefon {TelefonNummer = tlfNummer};
-                    tlf.Type = (string) rdr["Type"];
+                    tlf = new TelefonBinding
+                    {
+                        telefon = new Telefon(),
+                        Type = (string) rdr["Type"]
+                    };
+                    tlf.telefon.TelefonNummer = (rdr["TelefonNummerID"].ToString());
                     telefons.Add(tlf);
                 }
                 return telefons;
@@ -438,8 +441,18 @@ namespace DataAccesTier
             {
                 cmd.Parameters.AddWithValue("@AdresseID", adr.adresse.AdresseId);
 
-                var id = (int)cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
                 adr = null;
+            }
+        }
+
+        public void DeleteEverything()
+        {
+            string deleteString = @"DELETE FROM [Person] DELETE FROM [Telefon] DELETE FROM [Adresse] ";
+
+            using (SqlCommand cmd = new SqlCommand(deleteString, OpenConnection))
+            {
+                cmd.ExecuteNonQuery();
             }
         }
     }

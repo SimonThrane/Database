@@ -75,6 +75,10 @@ namespace TestApplication
 
             PersonDataUtil db = new PersonDataUtil();
 
+            //DELETE Everything in DB
+
+            db.DeleteEverything();
+
             //CREATE
 
             db.insertPerson(ref p1);
@@ -89,6 +93,17 @@ namespace TestApplication
                 Console.WriteLine(p1.Fornavn + " Bor på:" + adresse.adresse.Vejnavn + " nr. " + adresse.adresse.Husnummer
                     + ", " + adresse.adresse.Bynavn + " " + adresse.adresse.Postummer);
             }
+            Console.ReadKey();
+
+            //READ Telephones
+
+            List<TelefonBinding> telephones = db.getPersons_Telefoner(ref p1);
+
+            foreach (var telefon in telephones)
+            {
+                Console.WriteLine(p1.Fornavn + " Har en: " + telefon.Type + " med nr. "+ telefon.telefon.TelefonNummer);
+            }
+            Console.ReadKey();
 
             //UPDATE
 
@@ -106,6 +121,7 @@ namespace TestApplication
                     + ", " + adresse.adresse.Bynavn + " " + adresse.adresse.Postummer);
             }
 
+
             //DELETE
 
             Adresse deleteAdress = adresser.Last().adresse;
@@ -119,6 +135,8 @@ namespace TestApplication
                 Console.WriteLine(p1.Fornavn + " Bor på:" + adresse.adresse.Vejnavn + " nr. " + adresse.adresse.Husnummer
                     + ", " + adresse.adresse.Bynavn + " " + adresse.adresse.Postummer);
             }
+
+            Console.ReadKey();
 
         }
     }
