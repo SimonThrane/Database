@@ -64,7 +64,7 @@ namespace TestApplication
                         Postummer = 8200,
                         Vejnavn = "Finlandsgade"
                     },
-                Adresser = Ejendomme,
+                Adresser = Ejendomme2,
                 Efternavn = "Madsen",
                 Mellemnavn = "",
                 Fornavn = "Mads",
