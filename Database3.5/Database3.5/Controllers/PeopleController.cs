@@ -22,8 +22,9 @@ namespace Database3._5.Controllers
             var people = from a in db.People
                             select new PersonDTO()
                             {
-                                Name = a.Fornavn + a.Mellemnavn + a.Efternavn,
-                                PersonNummer = a.PersonNummer
+                                Name = a.Fornavn + " " + a.Mellemnavn + " " + a.Efternavn,
+                                PersonNummer = a.PersonNummer,
+                                Adresse = a.Adresse.Vejnavn + " " + a.Adresse.Husnummer + ", " + a.Adresse.Postnummer_ + " " + a.Adresse.Postnummer_
                             };
             return people;
         }
@@ -37,7 +38,7 @@ namespace Database3._5.Controllers
             new PersonDTO()
             {            
                 PersonNummer = b.PersonNummer,
-                Adresse = b.Adresse,
+                Adresse = b.Adresse.Vejnavn + " " + b.Adresse.Husnummer + ", " + b.Adresse.Postnummer_ + " " + b.Adresse.Postnummer_,
                 Name = b.Fornavn+ b.Mellemnavn+ b.Efternavn
                 
             }).SingleOrDefaultAsync(b => b.PersonNummer == id);
@@ -115,7 +116,7 @@ namespace Database3._5.Controllers
             var dto = new PersonDTO()
             {
                 PersonNummer = person.PersonNummer,
-                Adresse = person.Adresse,
+                Adresse = person.Adresse.Vejnavn + " " + person.Adresse.Husnummer + ", " + person.Adresse.Postnummer_ + " " + person.Adresse.Postnummer_,
                 Name = person.Fornavn + person.Mellemnavn + person.Efternavn
             };
 

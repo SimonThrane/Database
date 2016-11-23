@@ -37,12 +37,4 @@ namespace Database3._5.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person> People { get; set; }
     }
-
-    public class AdresseDTO
-    {
-        public long AdresseID { get; set; }
-        public virtual ICollection<Person> People { get; set; }
-        public int Postnummer_ { get; set; }
-
-    }
 }
