@@ -18,22 +18,60 @@ namespace Database3._5.Controllers
         private Model1 db = new Model1();
 
         // GET: api/Telefons
-        public IQueryable<Telefon> GetTelefons()
+        public List<TelefonDTO> GetTelefons()
         {
-            return db.Telefons;
+            var query = from a in db.Telefons.Include(p => p.hars) select a;
+
+            List<TelefonDTO> dtolist = new List<TelefonDTO>();
+
+            foreach (var telefon in query)
+            {
+                var dto = new TelefonDTO
+                {
+                    TelefonNummerID = telefon.TelefonNummerID,
+                    People = new List<PersonRefAdresse>()
+                };
+
+                foreach (var person in telefon.hars)
+                {
+                    dto.People.Add(new PersonRefAdresse
+                    {
+                        Navn = person.Person.Fornavn,
+                        Personnummer = person.Person.PersonNummer.ToString()
+                    });
+                }
+                dtolist.Add(dto);
+            }
+
+            return dtolist;
         }
 
         // GET: api/Telefons/5
         [ResponseType(typeof(Telefon))]
         public async Task<IHttpActionResult> GetTelefon(long id)
         {
-            Telefon telefon = await db.Telefons.FindAsync(id);
+            Telefon telefon = await db.Telefons.Include(p => p.hars).SingleOrDefaultAsync(a => a.TelefonNummerID == id);
             if (telefon == null)
             {
                 return NotFound();
             }
+            var dto = new TelefonDTO
+            {
+                TelefonNummerID = telefon.TelefonNummerID,
+                People = new List<PersonRefAdresse>()
+            };
 
-            return Ok(telefon);
+            foreach (var person in telefon.hars)
+            {
+                dto.People.Add(new PersonRefAdresse
+                {
+                    Navn = person.Person.Fornavn,
+                    Personnummer = person.Person.PersonNummer.ToString()
+                });
+            }
+
+
+            return Ok(dto);
         }
 
         // PUT: api/Telefons/5
@@ -110,11 +148,16 @@ namespace Database3._5.Controllers
             {
                 return NotFound();
             }
-
+            var har = await db.hars.SingleOrDefaultAsync(h => h.TelefonNummerID == telefon.TelefonNummerID);
+            if (har == null)
+            {
+                return NotFound();
+            }
             db.Telefons.Remove(telefon);
+            db.hars.Remove(har);
             await db.SaveChangesAsync();
 
-            return Ok(telefon);
+            return Ok(new TelefonDTO {People = null,TelefonNummerID = telefon.TelefonNummerID});
         }
 
         protected override void Dispose(bool disposing)
