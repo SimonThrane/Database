@@ -1,0 +1,4 @@
+Overvejelser:
+Man kan GET alle entiteter, både samlet og på id
+Man kan DELETE telefon
+Man kan POST en person såfremt man kender id på en adresse han bor på
