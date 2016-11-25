@@ -87,12 +87,25 @@ namespace Database3._5.Controllers
 
         // POST: api/People
         [ResponseType(typeof(Person))]
-        public IHttpActionResult PostPerson(Person person)
+        public IHttpActionResult PostPerson(PersonPostDTO persondto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            var person = new Person
+            {
+                AdresseID = persondto.AdresseId,
+                Adresse = null,
+                Efternavn = persondto.Efternavn,
+                Fornavn = persondto.Fornavn,
+                Type = persondto.Type,
+                PersonNummer = persondto.Personnummer,
+                erPaas = null,
+                hars = null
+            };
+
 
             db.People.Add(person);
 
@@ -113,15 +126,9 @@ namespace Database3._5.Controllers
             }
 
             db.Entry(person).Reference(x=>x.Adresse).Load();
-            var dto = new PersonDTO()
-            {
-                PersonNummer = person.PersonNummer,
-                Adresse = person.Adresse.Vejnavn + " " + person.Adresse.Husnummer + ", " + person.Adresse.Postnummer_ + " " + person.Adresse.Postnummer_,
-                Name = person.Fornavn + person.Mellemnavn + person.Efternavn
-            };
 
 
-            return CreatedAtRoute("DefaultApi", new { id = person.PersonNummer }, person);
+            return CreatedAtRoute("DefaultApi", new { id = person.PersonNummer }, persondto);
         }
 
         // DELETE: api/People/5

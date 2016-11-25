@@ -117,27 +117,31 @@ namespace Database3._5.Controllers
 
         // POST: api/Adresses
         [ResponseType(typeof(Adresse))]
-        public IHttpActionResult PostAdresse(Adresse adresse)
+        public IHttpActionResult PostAdresse(AdressePostDTO adressedto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var adresse = new Adresse
+            {
+                Bynavn = adressedto.Bynavn,
+                erPaas = null,
+                Husnummer = adressedto.Husnummer,
+                Postnummer_ = adressedto.Postnummer,
+                People = null,
+                Vejnavn = adressedto.Vejnavn
+            };
+
+
             db.Adresses.Add(adresse);
             db.SaveChanges();
 
 
             db.Entry(adresse).Reference(x=>x.People).Load();
-
-            var dto = new AdresseDTO()
-            {
-                AdresseID = adresse.AdresseID,
-                Postnummer_ = adresse.Postnummer_,
-                People = new List<PersonRefAdresse>()
-            };
            
-            return CreatedAtRoute("DefaultApi", new { id = adresse.AdresseID }, dto);
+            return CreatedAtRoute("DefaultApi", new { id = adresse.AdresseID }, adressedto);
         }
 
         // DELETE: api/Adresses/5
