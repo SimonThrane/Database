@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using GDL.Model;
+using Newtonsoft.Json;
 
 namespace GDL
 {
@@ -10,6 +13,23 @@ namespace GDL
     {
         static void Main(string[] args)
         {
+            CharacteristicContainer container=new CharacteristicContainer();
+            var url = "http://userportal.iha.dk/~jrt/i4dab/E14/HandIn4/GFKSC002_original.txt";
+
+            using (WebClient wc = new WebClient())
+            {
+                string jsonData=String.Empty;
+                try
+                {
+                    jsonData=wc.DownloadString(url);
+                }
+                catch (Exception) { }
+                if (!string.IsNullOrEmpty(jsonData))
+                    container=JsonConvert.DeserializeObject<CharacteristicContainer>(jsonData);
+
+                
+            }
+            Console.ReadKey();
         }
     }
 }
