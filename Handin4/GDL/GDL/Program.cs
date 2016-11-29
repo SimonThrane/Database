@@ -14,24 +14,55 @@ namespace GDL
         static void Main(string[] args)
         {
             var db = new GDLContext();
-            CharacteristicContainer container=new CharacteristicContainer();
             var url = "http://userportal.iha.dk/~jrt/i4dab/E14/HandIn4/GFKSC002_original.txt";
+            var container = ReadCharacteristicContainerData(url);
 
-            using (WebClient wc = new WebClient())
-            {
-                string jsonData=String.Empty;
-                try
-                {
-                    jsonData=wc.DownloadString(url);
-                }
-                catch (Exception) { }
-                if (!string.IsNullOrEmpty(jsonData))
-                    container=JsonConvert.DeserializeObject<CharacteristicContainer>(jsonData);
-
-                db.CharacteristicContainers.Add(container);
+            db.CharacteristicContainers.Add(container);
                 db.SaveChanges();
-            }
+
             Console.ReadKey();
         }
+
+        private static CharacteristicContainer ReadCharacteristicContainerData(string url)
+        {
+            var container = new CharacteristicContainer();
+            using (var wc = new WebClient())
+            {
+                var jsonData = string.Empty;
+                try
+                {
+                    jsonData = wc.DownloadString(url);
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
+                if (!string.IsNullOrEmpty(jsonData))
+                    container = JsonConvert.DeserializeObject<CharacteristicContainer>(jsonData);
+            }
+            return container;
+        }
+        private static ReadingContainer ReadReadingContainerData(string url)
+        {
+            var container = new ReadingContainer();
+            using (var wc = new WebClient())
+            {
+                var jsonData = string.Empty;
+                try
+                {
+                    jsonData = wc.DownloadString(url);
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
+                if (!string.IsNullOrEmpty(jsonData))
+                    container = JsonConvert.DeserializeObject<ReadingContainer>(jsonData);
+            }
+            return container;
+        }
+
     }
+
+
 }
