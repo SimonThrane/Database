@@ -13,6 +13,7 @@ namespace GDL
     {
         static void Main(string[] args)
         {
+            var db = new GDLContext();
             CharacteristicContainer container=new CharacteristicContainer();
             var url = "http://userportal.iha.dk/~jrt/i4dab/E14/HandIn4/GFKSC002_original.txt";
 
@@ -27,7 +28,8 @@ namespace GDL
                 if (!string.IsNullOrEmpty(jsonData))
                     container=JsonConvert.DeserializeObject<CharacteristicContainer>(jsonData);
 
-                
+                db.CharacteristicContainers.Add(container);
+                db.SaveChanges();
             }
             Console.ReadKey();
         }
