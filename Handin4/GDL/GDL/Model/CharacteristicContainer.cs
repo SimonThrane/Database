@@ -5,9 +5,10 @@ namespace GDL.Model
 {
     public class CharacteristicContainer
     {
-        public List<Appartmentcharacteristic> appartmentCharacteristic { get; set; }
+        public int CharacteristicContainerId { get; set; }
+        public virtual List<Appartmentcharacteristic> appartmentCharacteristic { get; set; }
         public DateTime timestamp { get; set; }
         public int version { get; set; }
-        public List<Sensorcharacteristic> sensorCharacteristic { get; set; }
+        public virtual List<Sensorcharacteristic> sensorCharacteristic { get; set; }
     }
 }
