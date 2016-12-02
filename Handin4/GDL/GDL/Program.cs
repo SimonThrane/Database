@@ -14,11 +14,20 @@ namespace GDL
         static void Main(string[] args)
         {
             var db = new GDLContext();
-            var url = "http://userportal.iha.dk/~jrt/i4dab/E14/HandIn4/GFKSC002_original.txt";
-            var container = ReadCharacteristicContainerData(url);
 
-            db.CharacteristicContainers.Add(container);
+            for (int i = 1; i < 10; i++)
+            {
+                var url = "http://userportal.iha.dk/~jrt/i4dab/E14/HandIn4/dataGDL/data/" + i + ".json";
+                var container = ReadReadingContainerData(url);
+                db.ReadingContainers.Add(container);
                 db.SaveChanges();
+            }
+
+            //var url = "http://userportal.iha.dk/~jrt/i4dab/E14/HandIn4/GFKSC002_original.txt";
+            //var container = ReadCharacteristicContainerData(url);
+            //db.CharacteristicContainers.Add(container);
+            //    db.SaveChanges();
+
 
             Console.ReadKey();
         }
