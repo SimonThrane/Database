@@ -15,13 +15,26 @@ namespace GDL
         {
             var db = new GDLContext();
 
-            for (int i = 1; i < 10; i++)
+            var readings = new Readings
             {
-                var url = "http://userportal.iha.dk/~jrt/i4dab/E14/HandIn4/dataGDL/data/" + i + ".json";
-                var container = ReadReadingContainerData(url);
-                db.ReadingContainers.Add(container);
-                db.SaveChanges();
-            }
+                new Reading {appartmentId = 4, sensorId = 20, timestamp = DateTime.Now, value = 20},
+                new Reading {appartmentId = 4, sensorId = 20, timestamp = DateTime.Now, value = 20},
+                new Reading {appartmentId = 4, sensorId = 20, timestamp = DateTime.Now, value = 20},
+                new Reading {appartmentId = 4, sensorId = 20, timestamp = DateTime.Now, value = 20},
+                new Reading {appartmentId = 4, sensorId = 20, timestamp = DateTime.Now, value = 20}
+            };
+
+
+            Readings.AddItemsToDatabase(readings);
+
+
+            //for (int i = 1; i < 10; i++)
+            //{
+            //    var url = "http://userportal.iha.dk/~jrt/i4dab/E14/HandIn4/dataGDL/data/" + i + ".json";
+            //    var container = ReadReadingContainerData(url);
+            //    db.ReadingContainers.Add(container);
+            //    db.SaveChanges();
+            //}
 
             //var url = "http://userportal.iha.dk/~jrt/i4dab/E14/HandIn4/GFKSC002_original.txt";
             //var container = ReadCharacteristicContainerData(url);

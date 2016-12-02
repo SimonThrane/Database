@@ -71,6 +71,7 @@
     <Build Include="dbo\Stored Procedures\ReadSensors.sql" />
     <Build Include="StructuredData.sql" />
     <Build Include="dbo\Stored Procedures\InsertData.sql" />
+    <Build Include="ReadingsTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\StoredProcedureTest.sql" />

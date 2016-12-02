@@ -1,6 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[InsertData]
-	@param1 int = 0,
-	@param2 int
+	@Readings [ReadingsTable] readonly
 AS
-	SELECT @param1, @param2
-RETURN 0
+BEGIN
+	INSERT INTO dbo.Readings ([sensorId],[appartmentId], [value],[timestamp])
+	SELECT  [sensorId],[appartmentId], [value],[timestamp] FROM @Readings
+
+	END
+GO
