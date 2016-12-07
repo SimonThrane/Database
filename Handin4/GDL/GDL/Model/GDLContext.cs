@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 
 namespace GDL.Model
 {
-    class GDLContext : DbContext
+  class GDLContext : DbContext
+  {
+
+    public GDLContext()
+        : base("DefaultConnection")
     {
-        public DbSet<CharacteristicContainer> CharacteristicContainers { get; set; }
-        public DbSet<ReadingContainer> ReadingContainers { get; set; }
     }
+
+    public DbSet<CharacteristicContainer> CharacteristicContainers { get; set; }
+    public DbSet<ReadingContainer> ReadingContainers { get; set; }
+  }
 }

@@ -12,51 +12,60 @@ namespace GDL
     {
       var db = new GDLContext();
 
-      //var readings = new Readings
-      //{
-      //    new Reading {appartmentId = 4, sensorId = 20, timestamp = DateTime.Now, value = 20},
-      //    new Reading {appartmentId = 4, sensorId = 20, timestamp = DateTime.Now, value = 20},
-      //    new Reading {appartmentId = 4, sensorId = 20, timestamp = DateTime.Now, value = 20},
-      //    new Reading {appartmentId = 4, sensorId = 20, timestamp = DateTime.Now, value = 20},
-      //    new Reading {appartmentId = 4, sensorId = 20, timestamp = DateTime.Now, value = 20}
-      //};
-
-
-      //Readings.AddItemsToDatabase(readings);
-
-
       for (int i = 1; i < 2; i++)
       {
         var url = "http://userportal.iha.dk/~jrt/i4dab/E14/HandIn4/dataGDL/data/" + i + ".json";
         var container = ReadReadingContainerData(url);
         db.ReadingContainers.Add(container);
         db.SaveChanges();
-        Console.WriteLine("Item " + i + " added");
       }
 
-      //var url = "http://userportal.iha.dk/~jrt/i4dab/E14/HandIn4/GFKSC002_original.txt";
-      //var container = ReadCharacteristicContainerData(url);
-      //db.CharacteristicContainers.Add(container);
-      //    db.SaveChanges();
+      var url2 = "http://userportal.iha.dk/~jrt/i4dab/E14/HandIn4/GFKSC002_original.txt";
+      var container2 = ReadCharacteristicContainerData(url2);
+      db.CharacteristicContainers.Add(container2);
+      db.SaveChanges();
 
 
-
-      Console.Write("See sensor data for appartment: ");
-
-      var appartmentID = Console.Read();
-      Console.WriteLine();
-
-      var appartmentData = db.ReadingContainers.First();
-      var data = appartmentData.reading.FindAll(a => a.appartmentId == appartmentID).ToList();
-
-      foreach (var appartment in data)
+      while (true)
       {
-        Console.WriteLine("SensorId: " + appartment.sensorId + " Value: " + appartment.value);
-      }
 
-      Console.WriteLine();
-      Console.WriteLine("Done.. Press any key...");
-      Console.ReadKey();
+        Console.Write("See sensor data for appartment: ");
+
+        var key = Console.ReadLine();
+        if (key != null)
+        {
+          var appartmentId = int.Parse(key);
+
+          var appartmentData = db.ReadingContainers.OrderByDescending(o => o.timestamp).First();
+          var data = appartmentData.reading.FindAll(a => a.appartmentId == appartmentId).ToList();
+          var sensors = db.CharacteristicContainers.First();
+
+          Console.WriteLine("---");
+          Console.WriteLine();
+          Console.WriteLine("Timestamp: " + appartmentData.timestamp + " Version: " + appartmentData.version);
+
+          if (data.Count > 0)
+          {
+            foreach (var appartment in data)
+            {
+              var sensorData = sensors.sensorCharacteristic.First(d => d.sensorId == appartment.sensorId);
+              Console.WriteLine("SensorID: " + appartment.sensorId + " Value: " + appartment.value + " " + sensorData.unit + " " + sensorData.description);
+            }
+          }
+          else
+          {
+            Console.WriteLine("No sensor info on appartment: " + appartmentId);
+          }
+        }
+        else
+        {
+          Console.WriteLine("Bad input");
+        }
+
+        Console.WriteLine();
+        Console.WriteLine("---");
+        Console.WriteLine();
+      }
 
     }
 
