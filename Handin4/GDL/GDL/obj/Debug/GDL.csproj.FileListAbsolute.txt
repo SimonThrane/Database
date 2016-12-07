@@ -24,3 +24,16 @@ C:\Users\Simon\Desktop\Database\Handin4\GDL\GDL\bin\Debug\EntityFramework.SqlSer
 C:\Users\Simon\Desktop\Database\Handin4\GDL\GDL\obj\Debug\GDL.csprojResolveAssemblyReference.cache
 C:\Users\Simon\Desktop\Database\Handin4\GDL\GDL\obj\Debug\GDL.Migrations.Initial.resources
 C:\Users\Simon\Desktop\Database\Handin4\GDL\GDL\obj\Debug\GDL.csproj.GenerateResource.Cache
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\bin\Debug\GDL.exe.config
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\obj\Debug\GDL.exe
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\obj\Debug\GDL.pdb
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\bin\Debug\GDL.exe
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\bin\Debug\GDL.pdb
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\bin\Debug\EntityFramework.dll
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\bin\Debug\EntityFramework.xml
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\obj\Debug\GDL.csprojResolveAssemblyReference.cache
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\obj\Debug\GDL.Migrations.Initial.resources
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\obj\Debug\GDL.csproj.GenerateResource.Cache
