@@ -7,3 +7,8 @@ C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Handin4\GDL\GDLssdtproject\
 C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Handin4\GDL\GDLssdtproject\obj\Debug\refactor.xml
 C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Handin4\GDL\GDLssdtproject\obj\Debug\postdeploy.sql
 C:\Users\kaspe\Desktop\Skole\4-semester\DAB\Database\Handin4\GDL\GDLssdtproject\obj\Debug\predeploy.sql
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDLssdtproject\bin\Debug\GDLssdtproject.dacpac
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDLssdtproject\bin\Debug\GDLssdtproject.dll
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDLssdtproject\bin\Debug\GDLssdtproject.pdb
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDLssdtproject\obj\Debug\GDLssdtproject.dll
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDLssdtproject\obj\Debug\GDLssdtproject.pdb
