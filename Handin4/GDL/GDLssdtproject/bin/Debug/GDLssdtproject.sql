@@ -40,6 +40,61 @@ USE [$(DatabaseName)];
 
 
 GO
+PRINT N'Dropping [dbo].[Trigger_Readings2]...';
+
+
+GO
+DROP TRIGGER [dbo].[Trigger_Readings2];
+
+
+GO
+PRINT N'Altering [dbo].[Trigger_Readings]...';
+
+
+GO
+
+ALTER TRIGGER [dbo].[Trigger_Readings]
+    ON [dbo].[Readings]
+    FOR UPDATE
+    AS
+    BEGIN
+        DECLARE @LogString VARCHAR(100)
+		DECLARE @LogString1 VARCHAR(100)
+		SELECT @LogString= (SELECT 'ReadingId: ' + cast(ReadingId as varchar) +  ' SensorId: '+ cast(sensorId as varchar) +' AppartmentId: '+ cast(appartmentId as varchar) +' Value: '+ cast(value as varchar) +' Timestamp: ' + cast(timestamp as varchar) From deleted)
+		SELECT @LogString1= (SELECT 'ReadingId: ' + cast(ReadingId as varchar) +  ' SensorId: '+ cast(sensorId as varchar) +' AppartmentId: '+ cast(appartmentId as varchar) +' Value: '+ cast(value as varchar) +' Timestamp: ' + cast(timestamp as varchar) From inserted)
+		Insert into dbo.LogTable(Operation, LogEntry, LogEntry2) VALUES ('Updated',@LogString,@LogString1);
+    END
+GO
+PRINT N'Creating [dbo].[Trigger_Readings_1]...';
+
+
+GO
+
+CREATE TRIGGER [dbo].[Trigger_Readings_1]
+    ON [dbo].[Readings]
+    FOR DELETE
+    AS
+    BEGIN
+        DECLARE @LogString VARCHAR(100)
+		SELECT @LogString= (SELECT 'ReadingId: ' + cast(ReadingId as varchar) +  ' SensorId: '+ cast(sensorId as varchar) +' AppartmentId: '+ cast(appartmentId as varchar) +' Value: '+ cast(value as varchar) +' Timestamp: ' + cast(timestamp as varchar) From deleted)
+		Insert into dbo.LogTable(Operation, LogEntry) VALUES ('Deleted',@LogString);
+    END
+GO
+PRINT N'Creating [dbo].[Trigger_Readings_2]...';
+
+
+GO
+
+CREATE TRIGGER [dbo].[Trigger_Readings_2]
+    ON [dbo].[Readings]
+    FOR INSERT
+    AS
+    BEGIN
+		DECLARE @LogString1 VARCHAR(100)
+		SELECT @LogString1= (SELECT 'ReadingId: ' + cast(ReadingId as varchar) +  ' SensorId: '+ cast(sensorId as varchar) +' AppartmentId: '+ cast(appartmentId as varchar) +' Value: '+ cast(value as varchar) +' Timestamp: ' + cast(timestamp as varchar) From inserted)
+		Insert into dbo.LogTable(Operation, LogEntry2) VALUES ('Inserted',@LogString1);
+    END
+GO
 PRINT N'Update complete.';
 
 
