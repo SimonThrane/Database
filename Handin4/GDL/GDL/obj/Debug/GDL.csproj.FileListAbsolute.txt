@@ -18,7 +18,6 @@ C:\Users\Simon\Desktop\Database\Handin4\GDL\GDL\bin\Debug\GDL.exe
 C:\Users\Simon\Desktop\Database\Handin4\GDL\GDL\bin\Debug\GDL.pdb
 C:\Users\Simon\Desktop\Database\Handin4\GDL\GDL\bin\Debug\EntityFramework.dll
 C:\Users\Simon\Desktop\Database\Handin4\GDL\GDL\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Simon\Desktop\Database\Handin4\GDL\GDL\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Simon\Desktop\Database\Handin4\GDL\GDL\bin\Debug\EntityFramework.xml
 C:\Users\Simon\Desktop\Database\Handin4\GDL\GDL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Simon\Desktop\Database\Handin4\GDL\GDL\obj\Debug\GDL.csprojResolveAssemblyReference.cache

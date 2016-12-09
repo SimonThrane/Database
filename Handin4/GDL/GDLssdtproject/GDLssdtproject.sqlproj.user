@@ -3,7 +3,7 @@
   <PropertyGroup>
     <StartupScript>(Blank)</StartupScript>
     <StartAction>StartNone</StartAction>
-    <TargetConnectionString>Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=I4DAB-HandIn4;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True</TargetConnectionString>
-    <TargetDatabase>I4DAB-HandIn4</TargetDatabase>
+    <TargetConnectionString>Data Source=i4dab.ase.au.dk;Initial Catalog=E16I4DABH4Gr4;Persist Security Info=True;User ID=E16I4DABH4Gr4;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True</TargetConnectionString>
+    <TargetDatabase>E16I4DABH4Gr4</TargetDatabase>
   </PropertyGroup>
 </Project>

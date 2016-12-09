@@ -16,3 +16,12 @@ C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Han
 C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDLssdtproject\obj\Debug\predeploy.sql
 C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDLssdtproject\obj\Debug\GDLssdtproject.dll
 C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDLssdtproject\obj\Debug\GDLssdtproject.pdb
+C:\Users\Simon\Desktop\Database\Handin4\GDL\GDLssdtproject\bin\Debug\GDLssdtproject.dacpac
+C:\Users\Simon\Desktop\Database\Handin4\GDL\GDLssdtproject\bin\Debug\GDLssdtproject.dll
+C:\Users\Simon\Desktop\Database\Handin4\GDL\GDLssdtproject\bin\Debug\GDLssdtproject.pdb
+C:\Users\Simon\Desktop\Database\Handin4\GDL\GDLssdtproject\obj\Debug\GDLssdtproject.dll
+C:\Users\Simon\Desktop\Database\Handin4\GDL\GDLssdtproject\obj\Debug\GDLssdtproject.pdb
+C:\Users\Simon\Desktop\Database\Handin4\GDL\GDLssdtproject\obj\Debug\Model.xml
+C:\Users\Simon\Desktop\Database\Handin4\GDL\GDLssdtproject\obj\Debug\refactor.xml
+C:\Users\Simon\Desktop\Database\Handin4\GDL\GDLssdtproject\obj\Debug\postdeploy.sql
+C:\Users\Simon\Desktop\Database\Handin4\GDL\GDLssdtproject\obj\Debug\predeploy.sql
