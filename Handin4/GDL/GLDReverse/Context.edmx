@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Appartmentcharacteristics">
+          <Key>
+            <PropertyRef Name="AppartmentId" />
+          </Key>
+          <Property Name="AppartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No" Type="int" Nullable="false" />
+          <Property Name="Size" Type="real" Nullable="false" />
+          <Property Name="Floor" Type="int" Nullable="false" />
+          <Property Name="CharacteristicContainer_CharacteristicContainerId" Type="int" />
+        </EntityType>
+        <EntityType Name="CharacteristicContainers">
+          <Key>
+            <PropertyRef Name="CharacteristicContainerId" />
+          </Key>
+          <Property Name="CharacteristicContainerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="timestamp" Type="datetime" Nullable="false" />
+          <Property Name="version" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReadingContainers">
+          <Key>
+            <PropertyRef Name="ReadingContainerId" />
+          </Key>
+          <Property Name="ReadingContainerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" Nullable="false" />
+          <Property Name="timestamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Readings">
+          <Key>
+            <PropertyRef Name="ReadingId" />
+          </Key>
+          <Property Name="ReadingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sensorId" Type="int" Nullable="false" />
+          <Property Name="appartmentId" Type="int" Nullable="false" />
+          <Property Name="value" Type="real" Nullable="false" />
+          <Property Name="timestamp" Type="datetime" Nullable="false" />
+          <Property Name="ReadingContainer_ReadingContainerId" Type="int" />
+        </EntityType>
+        <EntityType Name="Sensorcharacteristics">
+          <Key>
+            <PropertyRef Name="sensorId" />
+          </Key>
+          <Property Name="sensorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="calibrationCoeff" Type="nvarchar(max)" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="calibrationDate" Type="datetime" Nullable="false" />
+          <Property Name="externalRef" Type="nvarchar(max)" />
+          <Property Name="unit" Type="nvarchar(max)" />
+          <Property Name="calibrationEquation" Type="nvarchar(max)" />
+          <Property Name="CharacteristicContainer_CharacteristicContainerId" Type="int" />
+        </EntityType>
+        <Association Name="FK_dbo_Appartmentcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId">
+          <End Role="CharacteristicContainers" Type="Self.CharacteristicContainers" Multiplicity="0..1" />
+          <End Role="Appartmentcharacteristics" Type="Self.Appartmentcharacteristics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacteristicContainers">
+              <PropertyRef Name="CharacteristicContainerId" />
+            </Principal>
+            <Dependent Role="Appartmentcharacteristics">
+              <PropertyRef Name="CharacteristicContainer_CharacteristicContainerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Readings_dbo_ReadingContainers_ReadingContainer_ReadingContainerId">
+          <End Role="ReadingContainers" Type="Self.ReadingContainers" Multiplicity="0..1" />
+          <End Role="Readings" Type="Self.Readings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReadingContainers">
+              <PropertyRef Name="ReadingContainerId" />
+            </Principal>
+            <Dependent Role="Readings">
+              <PropertyRef Name="ReadingContainer_ReadingContainerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Sensorcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId">
+          <End Role="CharacteristicContainers" Type="Self.CharacteristicContainers" Multiplicity="0..1" />
+          <End Role="Sensorcharacteristics" Type="Self.Sensorcharacteristics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacteristicContainers">
+              <PropertyRef Name="CharacteristicContainerId" />
+            </Principal>
+            <Dependent Role="Sensorcharacteristics">
+              <PropertyRef Name="CharacteristicContainer_CharacteristicContainerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Appartmentcharacteristics" EntityType="Self.Appartmentcharacteristics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CharacteristicContainers" EntityType="Self.CharacteristicContainers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReadingContainers" EntityType="Self.ReadingContainers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Readings" EntityType="Self.Readings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sensorcharacteristics" EntityType="Self.Sensorcharacteristics" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Appartmentcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId" Association="Self.FK_dbo_Appartmentcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId">
+            <End Role="CharacteristicContainers" EntitySet="CharacteristicContainers" />
+            <End Role="Appartmentcharacteristics" EntitySet="Appartmentcharacteristics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Readings_dbo_ReadingContainers_ReadingContainer_ReadingContainerId" Association="Self.FK_dbo_Readings_dbo_ReadingContainers_ReadingContainer_ReadingContainerId">
+            <End Role="ReadingContainers" EntitySet="ReadingContainers" />
+            <End Role="Readings" EntitySet="Readings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Sensorcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId" Association="Self.FK_dbo_Sensorcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId">
+            <End Role="CharacteristicContainers" EntitySet="CharacteristicContainers" />
+            <End Role="Sensorcharacteristics" EntitySet="Sensorcharacteristics" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Appartmentcharacteristic">
+          <Key>
+            <PropertyRef Name="AppartmentId" />
+          </Key>
+          <Property Name="AppartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No" Type="Int32" Nullable="false" />
+          <Property Name="Size" Type="Single" Nullable="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="CharacteristicContainer_CharacteristicContainerId" Type="Int32" />
+          <NavigationProperty Name="CharacteristicContainer" Relationship="Self.FK_dbo_Appartmentcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId" FromRole="Appartmentcharacteristics" ToRole="CharacteristicContainers" />
+        </EntityType>
+        <EntityType Name="CharacteristicContainer">
+          <Key>
+            <PropertyRef Name="CharacteristicContainerId" />
+          </Key>
+          <Property Name="CharacteristicContainerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="version" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Appartmentcharacteristics" Relationship="Self.FK_dbo_Appartmentcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId" FromRole="CharacteristicContainers" ToRole="Appartmentcharacteristics" />
+          <NavigationProperty Name="Sensorcharacteristics" Relationship="Self.FK_dbo_Sensorcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId" FromRole="CharacteristicContainers" ToRole="Sensorcharacteristics" />
+        </EntityType>
+        <EntityType Name="ReadingContainer">
+          <Key>
+            <PropertyRef Name="ReadingContainerId" />
+          </Key>
+          <Property Name="ReadingContainerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" Nullable="false" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Readings" Relationship="Self.FK_dbo_Readings_dbo_ReadingContainers_ReadingContainer_ReadingContainerId" FromRole="ReadingContainers" ToRole="Readings" />
+        </EntityType>
+        <EntityType Name="Reading">
+          <Key>
+            <PropertyRef Name="ReadingId" />
+          </Key>
+          <Property Name="ReadingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sensorId" Type="Int32" Nullable="false" />
+          <Property Name="appartmentId" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="Single" Nullable="false" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReadingContainer_ReadingContainerId" Type="Int32" />
+          <NavigationProperty Name="ReadingContainer" Relationship="Self.FK_dbo_Readings_dbo_ReadingContainers_ReadingContainer_ReadingContainerId" FromRole="Readings" ToRole="ReadingContainers" />
+        </EntityType>
+        <EntityType Name="Sensorcharacteristic">
+          <Key>
+            <PropertyRef Name="sensorId" />
+          </Key>
+          <Property Name="sensorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="calibrationCoeff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="calibrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="externalRef" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="unit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="calibrationEquation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CharacteristicContainer_CharacteristicContainerId" Type="Int32" />
+          <NavigationProperty Name="CharacteristicContainer" Relationship="Self.FK_dbo_Sensorcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId" FromRole="Sensorcharacteristics" ToRole="CharacteristicContainers" />
+        </EntityType>
+        <Association Name="FK_dbo_Appartmentcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId">
+          <End Role="CharacteristicContainers" Type="Self.CharacteristicContainer" Multiplicity="0..1" />
+          <End Role="Appartmentcharacteristics" Type="Self.Appartmentcharacteristic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacteristicContainers">
+              <PropertyRef Name="CharacteristicContainerId" />
+            </Principal>
+            <Dependent Role="Appartmentcharacteristics">
+              <PropertyRef Name="CharacteristicContainer_CharacteristicContainerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Sensorcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId">
+          <End Role="CharacteristicContainers" Type="Self.CharacteristicContainer" Multiplicity="0..1" />
+          <End Role="Sensorcharacteristics" Type="Self.Sensorcharacteristic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacteristicContainers">
+              <PropertyRef Name="CharacteristicContainerId" />
+            </Principal>
+            <Dependent Role="Sensorcharacteristics">
+              <PropertyRef Name="CharacteristicContainer_CharacteristicContainerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Readings_dbo_ReadingContainers_ReadingContainer_ReadingContainerId">
+          <End Role="ReadingContainers" Type="Self.ReadingContainer" Multiplicity="0..1" />
+          <End Role="Readings" Type="Self.Reading" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReadingContainers">
+              <PropertyRef Name="ReadingContainerId" />
+            </Principal>
+            <Dependent Role="Readings">
+              <PropertyRef Name="ReadingContainer_ReadingContainerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Appartmentcharacteristics" EntityType="Self.Appartmentcharacteristic" />
+          <EntitySet Name="CharacteristicContainers" EntityType="Self.CharacteristicContainer" />
+          <EntitySet Name="ReadingContainers" EntityType="Self.ReadingContainer" />
+          <EntitySet Name="Readings" EntityType="Self.Reading" />
+          <EntitySet Name="Sensorcharacteristics" EntityType="Self.Sensorcharacteristic" />
+          <AssociationSet Name="FK_dbo_Appartmentcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId" Association="Self.FK_dbo_Appartmentcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId">
+            <End Role="CharacteristicContainers" EntitySet="CharacteristicContainers" />
+            <End Role="Appartmentcharacteristics" EntitySet="Appartmentcharacteristics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Sensorcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId" Association="Self.FK_dbo_Sensorcharacteristics_dbo_CharacteristicContainers_CharacteristicContainer_CharacteristicContainerId">
+            <End Role="CharacteristicContainers" EntitySet="CharacteristicContainers" />
+            <End Role="Sensorcharacteristics" EntitySet="Sensorcharacteristics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Readings_dbo_ReadingContainers_ReadingContainer_ReadingContainerId" Association="Self.FK_dbo_Readings_dbo_ReadingContainers_ReadingContainer_ReadingContainerId">
+            <End Role="ReadingContainers" EntitySet="ReadingContainers" />
+            <End Role="Readings" EntitySet="Readings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Appartmentcharacteristics">
+            <EntityTypeMapping TypeName="Model.Appartmentcharacteristic">
+              <MappingFragment StoreEntitySet="Appartmentcharacteristics">
+                <ScalarProperty Name="AppartmentId" ColumnName="AppartmentId" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="CharacteristicContainer_CharacteristicContainerId" ColumnName="CharacteristicContainer_CharacteristicContainerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CharacteristicContainers">
+            <EntityTypeMapping TypeName="Model.CharacteristicContainer">
+              <MappingFragment StoreEntitySet="CharacteristicContainers">
+                <ScalarProperty Name="CharacteristicContainerId" ColumnName="CharacteristicContainerId" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="version" ColumnName="version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReadingContainers">
+            <EntityTypeMapping TypeName="Model.ReadingContainer">
+              <MappingFragment StoreEntitySet="ReadingContainers">
+                <ScalarProperty Name="ReadingContainerId" ColumnName="ReadingContainerId" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Readings">
+            <EntityTypeMapping TypeName="Model.Reading">
+              <MappingFragment StoreEntitySet="Readings">
+                <ScalarProperty Name="ReadingId" ColumnName="ReadingId" />
+                <ScalarProperty Name="sensorId" ColumnName="sensorId" />
+                <ScalarProperty Name="appartmentId" ColumnName="appartmentId" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="ReadingContainer_ReadingContainerId" ColumnName="ReadingContainer_ReadingContainerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sensorcharacteristics">
+            <EntityTypeMapping TypeName="Model.Sensorcharacteristic">
+              <MappingFragment StoreEntitySet="Sensorcharacteristics">
+                <ScalarProperty Name="sensorId" ColumnName="sensorId" />
+                <ScalarProperty Name="calibrationCoeff" ColumnName="calibrationCoeff" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="calibrationDate" ColumnName="calibrationDate" />
+                <ScalarProperty Name="externalRef" ColumnName="externalRef" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="calibrationEquation" ColumnName="calibrationEquation" />
+                <ScalarProperty Name="CharacteristicContainer_CharacteristicContainerId" ColumnName="CharacteristicContainer_CharacteristicContainerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -31,6 +31,7 @@ C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Han
 C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\bin\Debug\EntityFramework.xml
 C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\obj\Debug\GDL.csprojResolveAssemblyReference.cache
 C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\obj\Debug\GDL.Migrations.Initial.resources
 C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\obj\Debug\GDL.csproj.GenerateResource.Cache
 C:\Users\jeppestaerk\OneDrive\Documents\Visual Studio 2015\Projects\Database\Handin4\GDL\GDL\obj\Debug\GDL.exe

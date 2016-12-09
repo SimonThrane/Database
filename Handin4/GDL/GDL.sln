@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GDL", "GDL\GDL.csproj", "{2
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GDLssdtproject", "GDLssdtproject\GDLssdtproject.sqlproj", "{E82DB660-FF25-442A-A9A0-48A91AF87D44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLDReverse", "GLDReverse\GLDReverse.csproj", "{0957E685-DE26-44AD-898B-38E79B6E6016}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{E82DB660-FF25-442A-A9A0-48A91AF87D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E82DB660-FF25-442A-A9A0-48A91AF87D44}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E82DB660-FF25-442A-A9A0-48A91AF87D44}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0957E685-DE26-44AD-898B-38E79B6E6016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0957E685-DE26-44AD-898B-38E79B6E6016}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0957E685-DE26-44AD-898B-38E79B6E6016}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0957E685-DE26-44AD-898B-38E79B6E6016}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
